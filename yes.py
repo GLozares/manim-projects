@@ -26,6 +26,7 @@ class CreateCircle(Scene):
         realpart = MathTex("5").next_to(path, DOWN, 0.1)
         imagpart = MathTex("2j").next_to(path, RIGHT, 0.1)
         newpart = MathTex("2")
+        solvedpart = MathTex("5.39")
         self.play(FadeIn(realpart), FadeIn(imagpart))
         self.wait()
 
@@ -45,17 +46,18 @@ class CreateCircle(Scene):
         #Do Math
         magnitude = MathTex("\sqrt{5^2 + 2^2 = ?}").move_to(DOWN)
         magnitude2 = MathTex("5.39 = ?").move_to(magnitude)
-        magnitude3 = MathTex("5.39 = A").move_to(magnitude2)
+        magnitude3 = MathTex("5.39 = A").move_to(ORIGIN)
 
         self.play(Create(magnitude), run_time=2)
         self.wait()
         self.play(Transform(magnitude, magnitude2))
         self.wait()
-        self.play(FadeOut(tri_verts, realpart, imagpart, tri_verts, pathlabel))
-        self.play(magnitude.animate.move_to(ORIGIN))
-        self.play(Transform(magnitude, magnitude3))
+        solvedpart.move_to(pathlabel)
+        self.play(Transform(pathlabel, solvedpart))
         self.wait()
-        self.play(FadeOut(magnitude))
+        self.clear()
+        self.wait()
+
 
 
         
